@@ -71,6 +71,13 @@ void getLocalTime()
   //  Serial.printf("[DEBUG] Time info: %d\n\r", &timeinfo);
 }
 
+void resetEEPROM(){
+    for (int i = 0; i < 128; i++) {
+      EEPROM.write(i, 0);
+    }
+    EEPROM.commit();
+}
+
 void powerLoss_detected() {    
     sleep_count++;
     LCD_Clear();
@@ -99,13 +106,6 @@ void powerLoss_detected() {
         sleep_count = 0;
         M5.Axp.DeepSleep(SLEEP_SEC(60 * 5)); //time to wakeup
     }
-}
-
-void resetEEPROM(){
-    for (int i = 0; i < 128; i++) {
-      EEPROM.write(i, 0);
-    }
-    EEPROM.commit();
 }
     
 void connectAWS()
