@@ -1,4 +1,4 @@
-#include "secrets.h"
+#include "secrets.h" //Remember to rename secrets_orig.h and add your network/certificates info
 #include <WiFiClientSecure.h>
 #include <MQTTClient.h>
 #include <ArduinoJson.h>
@@ -8,8 +8,8 @@
 #include "time.h"
 
 const char* ntpServer = "pool.ntp.org";
-const long  gmtOffset_sec = 7200;
-const int   daylightOffset_sec = 3600;
+const long  gmtOffset_sec = 7200; //Set your timezone offset - Israel is GMT+2 or 7200 sec
+const int   daylightOffset_sec = 3600; //Set your daylight offset
 
 long loopTime, startTime = 0;
 char localTime[32] = "";
@@ -18,15 +18,15 @@ time_t localStamp;
 uint8_t sleep_count = 0;
 uint8_t wifi_count = 0;
 int printDelay = 500;
-int checkDelay = 15000;
+int checkDelay = 15000; //Set time between power checks
 time_t lastError;
 char lastErrorString[32];
 long lastErrorSec;
 char powerStatus[8] = "NA"; 
 
 #define AWS_MAX_RECONNECT_TRIES 10
-#define AWS_IOT_PUBLISH_TOPIC   "M5StickC-PowerDetector/pub"
-#define AWS_IOT_SUBSCRIBE_TOPIC "M5StickC-PowerDetector/sub"
+#define AWS_IOT_PUBLISH_TOPIC   "M5StickC-PowerDetector/pub" //AWS IoT publish topic
+#define AWS_IOT_SUBSCRIBE_TOPIC "M5StickC-PowerDetector/sub" //AWS IoT subscribe topic
 
 WiFiClientSecure net = WiFiClientSecure();
 MQTTClient client = MQTTClient(256);
