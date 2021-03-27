@@ -31,7 +31,8 @@ char powerStatus[8] = "NA";
 WiFiClientSecure net = WiFiClientSecure();
 MQTTClient client = MQTTClient(256);
 
-void LCD_Clear() {
+void LCD_Clear() 
+{
     M5.Lcd.fillScreen(BLUE);
     M5.Lcd.setCursor(0, 0);
     M5.Lcd.setTextColor(WHITE);
@@ -39,7 +40,8 @@ void LCD_Clear() {
     M5.Lcd.setTextFont(2);
 }
 
-void connectWiFi(){
+void connectWiFi()
+{
     // Connect to WiFi
     M5.Lcd.printf("Connecting to %s ", ssid);
     delay(1000);
@@ -179,7 +181,8 @@ void messageHandler(String &topic, String &payload)
     delay(5000);
 }
 
-void setup() {
+void setup() 
+{
     M5.begin();
     M5.Lcd.setRotation(3);
     LCD_Clear();
@@ -196,13 +199,15 @@ void setup() {
     lastError = EEPROM.readInt(0);
     Serial.println(lastError);
     
-    if(M5.Axp.GetVBusVoltage()<4){
-      strncpy( powerStatus, "ERROR", sizeof(powerStatus) );
+    if(M5.Axp.GetVBusVoltage()<4)
+    {
+        strncpy( powerStatus, "ERROR", sizeof(powerStatus) );
     }
 
 }
 
-void loop() {
+void loop() 
+{
     loopTime = millis();
     
     if(startTime < (loopTime - checkDelay)) //Check power status every [checkDelay] msec
