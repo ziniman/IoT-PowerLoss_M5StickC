@@ -67,8 +67,6 @@ void getLocalTime()
   }
   strftime(localTime,32,"%d-%m-%Y %H:%M:%S",&timeinfo);
   localStamp = mktime(&timeinfo);
-  //  Serial.printf("[DEBUG] Local time: %d\n\r", localStamp);
-  //  Serial.printf("[DEBUG] Time info: %d\n\r", &timeinfo);
 }
 
 void resetEEPROM(){
@@ -208,8 +206,6 @@ void loop() {
         else
         {
             strncpy( powerStatus, "OK", sizeof(powerStatus) );
-            //EEPROM.writeInt(0, 1); //Set EEPROM last staus to 1 (OK)
-            //EEPROM.commit();
             sleep_count = 0;
             
             if (lastError>0){
