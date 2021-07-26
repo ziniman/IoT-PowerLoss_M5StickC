@@ -1,4 +1,4 @@
-#include "secrets.h" //Remember to rename secrets_orig.h and add your network/certificates info
+#include "secrets.h" //Remember to rename secrets_orig.h and add your network/certificates/other info
 #include <WiFiClientSecure.h>
 #include <MQTTClient.h>
 #include <ArduinoJson.h>
@@ -154,8 +154,8 @@ void connectAWS()
 void publishMessage()
 {
     StaticJsonDocument<200> doc;
-    doc["sms"] = "+972547999502";
-    doc["message"] = "Ziniman Home Power Down";
+    doc["sms"] = smsNumber;
+    doc["message"] = smsMessage;
     //strcat(doc["message"],lastErrorString);
     char jsonBuffer[512];
     serializeJson(doc, jsonBuffer); // print to client
